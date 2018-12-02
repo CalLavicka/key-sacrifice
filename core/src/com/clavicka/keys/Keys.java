@@ -79,7 +79,7 @@ public class Keys {
 			if(k != null) {
 				if (Gdx.input.isKeyPressed(k.keycode)) {
 					if(Gdx.input.isKeyJustPressed(k.keycode)) {
-						k.life -= 5;
+						k.life -= 15;
 					} else {
 						k.life--;
 					}
@@ -139,7 +139,7 @@ public class Keys {
 		}
 	}
 	
-	public static final int START_LIFE = 600;
+	public static final int START_LIFE = 1400;
 	
 	public static class Key {
 		int keycode;
