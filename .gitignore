@@ -1,3 +1,8 @@
+*.zip
+KeySacrifice-Windows/
+KeySacrifice-Linux/
+*.app
+
 ## Java
 
 *.class

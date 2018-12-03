@@ -10,7 +10,8 @@ public class HtmlLauncher extends GwtApplication {
         // USE THIS CODE FOR A FIXED SIZE APPLICATION
         @Override
         public GwtApplicationConfiguration getConfig () {
-                return new GwtApplicationConfiguration(480, 320);
+                GwtApplicationConfiguration config = new GwtApplicationConfiguration(600, 480);
+                return config;
         }
         // END CODE FOR FIXED SIZE APPLICATION
 

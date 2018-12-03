@@ -19,14 +19,14 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Align;
 
 public class Keys {
-	public List<Key> activeKeys = new ArrayList<>();
+	public List<Key> activeKeys = new ArrayList<Key>();
 	
-	public List<Key> deadKeys = new ArrayList<>();
+	public List<Key> deadKeys = new ArrayList<Key>();
 	
-	public List<Key> keysLeft = new ArrayList<>();
+	public List<Key> keysLeft = new ArrayList<Key>();
 	
-	public Map<Action, Key> inputs = new HashMap<>();
-	public Map<String, Key> keyMap = new HashMap<>();
+	public Map<Action, Key> inputs = new HashMap<Action, Key>();
+	public Map<String, Key> keyMap = new HashMap<String, Key>();
 	
 	public static final Color PENDING = Color.GRAY;
 	public static final Color ACTIVE = Color.WHITE;
@@ -42,8 +42,9 @@ public class Keys {
 	};
 	
 	public Keys() {
-		keysLeft.addAll(Arrays.stream(KEY_NAMES)
-				.map(s -> new Key(Input.Keys.valueOf(s))).collect(Collectors.toList()));
+		for(String s : KEY_NAMES) {
+			keysLeft.add(new Key(Input.Keys.valueOf(s)));
+		}
 		for(Key k : keysLeft) {
 			keyMap.put(k.keyname, k);
 		}
@@ -73,7 +74,7 @@ public class Keys {
 	}
 	
 	public Set<Action> getActions() {
-		Set<Action> ret = new HashSet<>();
+		Set<Action> ret = new HashSet<Action>();
 		for(Action a : Action.values()) {
 			Key k = inputs.get(a);
 			if(k != null) {
@@ -161,7 +162,32 @@ public class Keys {
 	
 	public static enum Action {
 		SHOOTUP, SHOOTLEFT, SHOOTRIGHT, SHOOTDOWN,
-		MOVEUP, MOVELEFT, MOVERIGHT, MOVEDOWN
+		MOVEUP, MOVELEFT, MOVERIGHT, MOVEDOWN;
+
+		
+		@Override
+		public String toString() {
+			switch(this) {
+			case SHOOTUP:
+				return "Shoot Up";
+			case SHOOTLEFT:
+				return "Shoot Left";
+			case SHOOTRIGHT:
+				return "Shoot Right";
+			case SHOOTDOWN:
+				return "Shoot Down";
+			case MOVEUP:
+				return "Move Up";
+			case MOVELEFT:
+				return "Move Left";
+			case MOVERIGHT:
+				return "Move Right";
+			case MOVEDOWN:
+				return "Move Down";
+			default:
+				return "Error";
+			}
+		}
 	}
 	
 	public Color getColor(String key) {

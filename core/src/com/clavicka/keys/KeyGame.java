@@ -105,14 +105,16 @@ public class KeyGame extends ApplicationAdapter {
 
 		// keys.killKey(keys.inputs.get(Keys.Action.MOVEUP));
 		initializeGame();
+		
+		Gdx.graphics.setVSync(true);
 	}
 	
 	public void initializeGame() {
 		keys = new Keys();
 		player = new Player(new Vector2(100, 100));
-		playerBullets = new ArrayList<>();
-		enemyBullets = new ArrayList<>();
-		enemies = new ArrayList<>();
+		playerBullets = new ArrayList<Bullet>();
+		enemyBullets = new ArrayList<Bullet>();
+		enemies = new ArrayList<Enemy>();
 
 		score = 0;
 		
@@ -262,8 +264,8 @@ public class KeyGame extends ApplicationAdapter {
 				currentSacrifice = null;
 		}
 
-		List<Bullet> deadBullets = new ArrayList<>();
-		List<Enemy> deadEnemies = new ArrayList<>();
+		List<Bullet> deadBullets = new ArrayList<Bullet>();
+		List<Enemy> deadEnemies = new ArrayList<Enemy>();
 
 		getInput();
 		if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && numBombs > 0 && bombOrigin == null) {
@@ -356,7 +358,7 @@ public class KeyGame extends ApplicationAdapter {
 			bomb_target += 30000;
 			if (bombPower == null) {
 				bombPower = new Powerup(new Vector2(gen.nextInt(gameWidth), gen.nextInt(gameHeight)),
-						5, Powerup.BOMB);
+						8, Powerup.BOMB);
 			}
 		}
 
